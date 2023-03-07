@@ -3,10 +3,15 @@ import {InlineQueryResult} from "grammy/types";
 import {GPTContext} from "../bot.js";
 import {generateResponse} from "../api/openai.js";
 import {nanoid} from "nanoid/async";
+import {ADMINS} from "../config.js";
 
 export const inline = new Composer<GPTContext>();
 
 inline.inlineQuery(/.*/, async (ctx) => {
+    if (!ADMINS.includes(ctx.from?.id)) {
+        return;
+    }
+
     const query = ctx.inlineQuery.query.trim();
 
     if (!query) {

@@ -2,7 +2,7 @@ import {hydrateReply, ParseModeFlavor} from "@grammyjs/parse-mode";
 import {hydrate, HydrateFlavor} from "@grammyjs/hydrate";
 import {Bot, Context} from "grammy";
 import {run} from "@grammyjs/runner";
-import {BOT_TOKEN} from "./config.js";
+import {BOT_TOKEN, BOT_USERNAME} from "./config.js";
 import {inline} from "./modules/inline.js";
 
 export type GPTContext = ParseModeFlavor<HydrateFlavor<Context>>;
@@ -14,5 +14,5 @@ bot.use(hydrate());
 
 bot.use(inline);
 
-console.log("🤖 Logged in as @GPTInlineBot");
+console.log("🤖 Logged in as @" + BOT_USERNAME);
 run(bot);
