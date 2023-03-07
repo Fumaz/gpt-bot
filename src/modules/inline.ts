@@ -39,7 +39,7 @@ async function createImageResult(prompt: string): Promise<InlineQueryResult> {
 }
 
 inline.inlineQuery(/.*/, async (ctx) => {
-    if (!ADMINS.includes(ctx.from?.id)) {
+    if (!ADMINS.includes(ctx.from?.id || 0)) {
         return;
     }
 

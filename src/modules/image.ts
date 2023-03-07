@@ -1,10 +1,15 @@
 import {Composer} from "grammy";
 import {GPTContext} from "../bot.js";
 import {generateImage} from "../api/openai.js";
+import {ADMINS} from "../config.js";
 
 export const image = new Composer<GPTContext>();
 
 image.command("image", async (ctx) => {
+    if (!ADMINS.includes(ctx.from?.id || 0)) {
+        return;
+    }
+
     const text = ctx.match;
 
     if (!text) {
