@@ -12,12 +12,13 @@ image.command("image", async (ctx) => {
         return;
     }
 
+    const creating = await ctx.replyWithHTML("🖼️ Creating your image...");
+
     try {
         const image = await generateImage(text);
 
         if (!image) {
-            await ctx.replyWithHTML("❌ An error occurred while generating your image.");
-            return;
+            throw new Error("No response");
         }
 
         await ctx.replyWithPhoto(image, {
@@ -26,6 +27,7 @@ image.command("image", async (ctx) => {
         });
     } catch (e) {
         await ctx.replyWithHTML("❌ An error occurred while generating your image.");
-        return;
     }
+
+    await creating.delete();
 });
