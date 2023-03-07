@@ -8,10 +8,30 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export async function generateResponse(prompt: string) {
-    const completion = await openai.createCompletion({
+    const completion = await openai.createChatCompletion({
         model: MODEL,
-        prompt: prompt
+        messages: [{
+            role: "user",
+            content: prompt
+        }],
+        max_tokens: 256,
+        temperature: 0.7,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0
     });
 
-    return completion.data.choices[0].text;
+    for (const choice of completion.data.choices) {
+        const message = choice.message;
+
+        if (!message) {
+            continue;
+        }
+
+        if (message.role === "assistant") {
+            return message.content;
+        }
+    }
+
+    throw new Error("No response");
 }
