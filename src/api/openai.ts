@@ -35,3 +35,14 @@ export async function generateResponse(prompt: string) {
 
     throw new Error("No response");
 }
+
+export async function generateImage(prompt: string) {
+    const completion = await openai.createImage({
+        prompt: prompt,
+        n: 1,
+        size: "1024x1024",
+        response_format: "url"
+    });
+
+    return completion.data.data[0].url;
+}
