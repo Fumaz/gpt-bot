@@ -38,6 +38,8 @@ inline.inlineQuery(/.*/, async (ctx) => {
             },
         });
     } catch (e) {
+        console.log(e);
+
         results.push({
             type: "article",
             id: await nanoid(64),
