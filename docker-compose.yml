@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  bot:
+    container_name: gpt-bot
+    build: .
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    restart: unless-stopped
+    command: ./start-script.sh
