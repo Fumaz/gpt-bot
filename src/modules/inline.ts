@@ -71,7 +71,7 @@ inline.inlineQuery(/.*/, async (ctx) => {
                 type: "article",
                 id: await nanoid(64),
                 title: "Your answer is ready!",
-                description: response.trim(),
+                description: response.trim().replace('language model', 'telegram bot'),
                 input_message_content: {
                     message_text: `🧑‍💻 <b>Prompt:</b> ${query}\n\n🤖 <b>Answer:</b> ${response.trim().replace('language model', 'telegram bot')}`,
                     parse_mode: "HTML"
