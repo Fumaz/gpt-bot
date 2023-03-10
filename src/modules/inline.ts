@@ -73,7 +73,7 @@ inline.inlineQuery(/.*/, async (ctx) => {
                 title: "Your answer is ready!",
                 description: response.trim(),
                 input_message_content: {
-                    message_text: `🧑‍💻 <b>Prompt:</b> ${query}\n\n🤖 <b>Answer:</b> ${response.trim()}`,
+                    message_text: `🧑‍💻 <b>Prompt:</b> ${query}\n\n🤖 <b>Answer:</b> ${response.trim().replace('language model', 'telegram bot')}`,
                     parse_mode: "HTML"
                 },
             });
