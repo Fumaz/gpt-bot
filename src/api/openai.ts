@@ -7,14 +7,14 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-export async function generateResponse(prompt: string, model: string = MODEL) {
+export async function generateResponse(prompt: string, model: string = MODEL, max_tokens: number = 256) {
     const completion = await openai.createChatCompletion({
         model: MODEL,
         messages: [{
             role: "user",
             content: prompt
         }],
-        max_tokens: 256,
+        max_tokens: max_tokens,
         temperature: 0.7,
         top_p: 1,
         frequency_penalty: 0,

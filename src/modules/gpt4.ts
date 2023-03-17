@@ -14,7 +14,7 @@ gpt4.command("gpt4", async (ctx) => {
 
     const message = await ctx.replyWithHTML("Generating...");
 
-    const response = await generateResponse(text, "gpt-4");
+    const response = await generateResponse(text, "gpt-4", 1024);
 
     await ctx.replyWithHTML(response);
 
