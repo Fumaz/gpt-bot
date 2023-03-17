@@ -61,7 +61,7 @@ inline.inlineQuery(/.*/, async (ctx) => {
         results.push(await createImageResult(prompt));
     } else {
         try {
-            const response = await generateResponse(query);
+            const response = await generateResponse(query, "gpt-4");
 
             if (!response) {
                 throw new Error("No response");
