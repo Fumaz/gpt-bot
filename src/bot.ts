@@ -5,6 +5,7 @@ import {run} from "@grammyjs/runner";
 import {BOT_TOKEN, BOT_USERNAME} from "./config.js";
 import {inline} from "./modules/inline.js";
 import {image} from "./modules/image.js";
+import {gpt4} from "./modules/gpt4.js";
 
 export type GPTContext = ParseModeFlavor<HydrateFlavor<Context>>;
 
@@ -15,6 +16,7 @@ bot.use(hydrate());
 
 bot.use(inline);
 bot.use(image);
+bot.use(gpt4);
 
 console.log("🤖 Logged in as @" + BOT_USERNAME);
 run(bot);

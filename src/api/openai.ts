@@ -7,7 +7,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-export async function generateResponse(prompt: string) {
+export async function generateResponse(prompt: string, model: string = MODEL) {
     const completion = await openai.createChatCompletion({
         model: MODEL,
         messages: [{
